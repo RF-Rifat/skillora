@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { Button, Card, Badge, Container } from '../components';
 
 const DashboardPage = () => {
   const stats = [
@@ -103,9 +104,9 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <Container>
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary to-primary-hover text-white rounded-xl p-6">
+      <Card className="bg-gradient-to-r from-primary to-primary-hover text-white rounded-xl p-6 mb-8">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold mb-2">Welcome back, John! 👋</h1>
@@ -113,12 +114,12 @@ const DashboardPage = () => {
           </div>
           <div className="text-4xl">🚀</div>
         </div>
-      </div>
+      </Card>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <div key={index} className="bg-surface border border-default rounded-xl p-6">
+          <Card key={index} className="bg-surface border border-default rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center text-white text-xl`}>
                 {stat.icon}
@@ -133,14 +134,14 @@ const DashboardPage = () => {
               <p className="text-2xl font-bold text-text mb-1">{stat.value}</p>
               <p className="text-text-muted">{stat.title}</p>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Courses */}
         <div className="lg:col-span-2">
-          <div className="bg-surface border border-default rounded-xl p-6">
+          <Card className="bg-surface border border-default rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-text">Recent Courses</h2>
               <Link to="/dashboard/my-courses" className="text-primary hover:text-primary-hover transition-colors">
@@ -185,12 +186,12 @@ const DashboardPage = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         </div>
 
         {/* Notifications */}
         <div className="lg:col-span-1">
-          <div className="bg-surface border border-default rounded-xl p-6">
+          <Card className="bg-surface border border-default rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-text">Notifications</h2>
               <button className="text-primary hover:text-primary-hover transition-colors text-sm">
@@ -229,12 +230,12 @@ const DashboardPage = () => {
                 View all notifications
               </button>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-surface border border-default rounded-xl p-6">
+      <Card className="bg-surface border border-default rounded-xl p-6">
         <h2 className="text-xl font-bold text-text mb-6">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
@@ -286,8 +287,8 @@ const DashboardPage = () => {
             </div>
           </button>
         </div>
-      </div>
-    </div>
+      </Card>
+    </Container>
   );
 };
 

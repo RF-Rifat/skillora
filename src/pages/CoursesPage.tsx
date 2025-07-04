@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { Button, Input, Card, Badge, Container } from '../components';
 
 const CoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -129,8 +130,8 @@ const CoursesPage = () => {
     <div className="bg-background min-h-screen">
       {/* Header */}
       <div className="bg-surface border-b border-default">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
+        <Container>
+          <div className="text-center py-12">
             <h1 className="text-4xl font-bold text-text mb-4">
               Explore Our Courses
             </h1>
@@ -138,20 +139,19 @@ const CoursesPage = () => {
               Choose from hundreds of courses across various disciplines and skill levels
             </p>
           </div>
-        </div>
+        </Container>
       </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Container>
         {/* Filters and Search */}
         <div className="mb-8 space-y-4">
           {/* Search Bar */}
-          <div className="relative">
-            <input
+          <div className="relative max-w-md">
+            <Input
               type="text"
               placeholder="Search courses or instructors..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="form-input pl-10 w-full max-w-md"
+              onChange={e => setSearchTerm(e.target.value)}
+              className="pl-10 w-full"
             />
             <svg
               className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-text-muted"
@@ -167,7 +167,7 @@ const CoursesPage = () => {
           <div className="flex flex-wrap gap-4">
             <select
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onChange={e => setSelectedCategory(e.target.value)}
               className="form-input"
             >
               {categories.map(category => (
@@ -179,7 +179,7 @@ const CoursesPage = () => {
 
             <select
               value={selectedLevel}
-              onChange={(e) => setSelectedLevel(e.target.value)}
+              onChange={e => setSelectedLevel(e.target.value)}
               className="form-input"
             >
               {levels.map(level => (
@@ -189,16 +189,16 @@ const CoursesPage = () => {
               ))}
             </select>
 
-            <button
+            <Button
+              variant="outline"
               onClick={() => {
                 setSearchTerm('');
                 setSelectedCategory('all');
                 setSelectedLevel('all');
               }}
-              className="btn-outline"
             >
               Clear Filters
-            </button>
+            </Button>
           </div>
 
           {/* Results Count */}
@@ -211,18 +211,18 @@ const CoursesPage = () => {
         {paginatedCourses.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             {paginatedCourses.map((course) => (
-              <div key={course.id} className="bg-surface border border-default rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+              <Card key={course.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="relative">
                   <img
                     src={course.image}
                     alt={course.title}
                     className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 left-4 bg-accent text-white px-2 py-1 rounded text-sm font-medium">
-                    {course.level}
+                  <div className="absolute top-4 left-4">
+                    <Badge variant="accent">{course.level}</Badge>
                   </div>
-                  <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">
-                    {course.duration}
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="secondary">{course.duration}</Badge>
                   </div>
                 </div>
                 <div className="p-6">
@@ -251,12 +251,14 @@ const CoursesPage = () => {
                   </div>
                   <Link
                     to={`/courses/${course.id}`}
-                    className="btn-primary w-full text-center"
+                    className="w-full block"
                   >
-                    View Course
+                    <Button variant="primary" className="w-full text-center">
+                      View Course
+                    </Button>
                   </Link>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         ) : (
@@ -266,57 +268,56 @@ const CoursesPage = () => {
             <p className="text-text-muted mb-4">
               Try adjusting your search terms or filters
             </p>
-            <button
+            <Button
+              variant="primary"
               onClick={() => {
                 setSearchTerm('');
                 setSelectedCategory('all');
                 setSelectedLevel('all');
               }}
-              className="btn-primary"
             >
               Clear All Filters
-            </button>
+            </Button>
           </div>
         )}
 
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center space-x-2">
-            <button
+            <Button
+              variant="outline"
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="btn-outline disabled:opacity-50 disabled:cursor-not-allowed"
+              className="disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Previous
-            </button>
+            </Button>
             
             {[...Array(totalPages)].map((_, index) => {
               const page = index + 1;
               return (
-                <button
+                <Button
                   key={page}
+                  variant={currentPage === page ? 'primary' : 'outline'}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    currentPage === page
-                      ? 'bg-primary text-white'
-                      : 'text-text hover:bg-surface-hover'
-                  }`}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === page ? '' : 'text-text'}`}
                 >
                   {page}
-                </button>
+                </Button>
               );
             })}
             
-            <button
+            <Button
+              variant="outline"
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="btn-outline disabled:opacity-50 disabled:cursor-not-allowed"
+              className="disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
-            </button>
+            </Button>
           </div>
         )}
-      </div>
+      </Container>
     </div>
   );
 };

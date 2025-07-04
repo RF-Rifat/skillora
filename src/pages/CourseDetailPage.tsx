@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
-import { Link } from 'react-router';
+import { Avatar, Badge, Button, Card, Container } from '../components';
+
 
 const CourseDetailPage = () => {
   const { courseId } = useParams();
@@ -9,7 +10,7 @@ const CourseDetailPage = () => {
     id: courseId,
     title: 'Complete React Developer Course',
     instructor: 'Sarah Johnson',
-    instructorAvatar: '👩‍💻',
+    instructorAvatar: 'https://randomuser.me/api/portraits/women/44.jpg',
     instructorBio: 'Senior React Developer with 8+ years of experience. Former lead developer at Facebook and Google.',
     rating: 4.8,
     students: 12450,
@@ -63,7 +64,7 @@ const CourseDetailPage = () => {
           { title: 'useState and useEffect', duration: '35 min', type: 'video' },
           { title: 'Custom Hooks', duration: '30 min', type: 'video' },
           { title: 'Context API', duration: '25 min', type: 'video' },
-          { title: 'Performance Optimization', duration: '30 min', type: 'video' }
+          { title: 'Performance Optimization', duration: '30 min' }
         ]
       }
     ]
@@ -73,12 +74,12 @@ const CourseDetailPage = () => {
     <div className="bg-background min-h-screen">
       {/* Course Header */}
       <div className="bg-surface border-b border-default">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
             {/* Course Info */}
             <div className="lg:col-span-2">
               <div className="mb-4">
-                <span className="text-sm text-primary font-medium">{course.category}</span>
+                <Badge variant="accent">{course.category}</Badge>
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold text-text mb-4">
                 {course.title}
@@ -86,16 +87,14 @@ const CourseDetailPage = () => {
               <p className="text-lg text-text-muted mb-6">
                 {course.description}
               </p>
-              
               {/* Instructor */}
               <div className="flex items-center mb-6">
-                <div className="text-2xl mr-3">{course.instructorAvatar}</div>
+                <Avatar src={course.instructorAvatar} alt={course.instructor} size={48} className="mr-3" />
                 <div>
                   <p className="font-medium text-text">Created by {course.instructor}</p>
                   <p className="text-sm text-text-muted">{course.instructorBio}</p>
                 </div>
               </div>
-
               {/* Course Stats */}
               <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted">
                 <div className="flex items-center space-x-1">
@@ -112,42 +111,37 @@ const CourseDetailPage = () => {
                 </div>
               </div>
             </div>
-
             {/* Enrollment Card */}
             <div className="lg:col-span-1">
-              <div className="bg-background border border-default rounded-xl p-6 sticky top-8">
+              <Card className="bg-background border border-default rounded-xl p-6 sticky top-8">
                 <div className="mb-4">
                   <div className="flex items-center space-x-2 mb-2">
                     <span className="text-3xl font-bold text-text">${course.price}</span>
                     <span className="text-lg text-text-muted line-through">${course.originalPrice}</span>
-                    <span className="bg-accent text-white px-2 py-1 rounded text-sm font-medium">
+                    <Badge variant="accent">
                       {Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)}% OFF
-                    </span>
+                    </Badge>
                   </div>
                   <p className="text-sm text-text-muted">30-Day Money-Back Guarantee</p>
                 </div>
-
-                <button className="btn-primary w-full mb-4">
+                <Button variant="primary" className="w-full mb-4">
                   Enroll Now
-                </button>
-
-                <button className="btn-outline w-full mb-4">
+                </Button>
+                <Button variant="outline" className="w-full mb-4">
                   Add to Wishlist
-                </button>
-
+                </Button>
                 <div className="text-center text-sm text-text-muted">
                   <p>Full lifetime access</p>
                   <p>Access on mobile and TV</p>
                   <p>Certificate of completion</p>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* What You'll Learn */}
@@ -162,7 +156,6 @@ const CourseDetailPage = () => {
                 ))}
               </div>
             </section>
-
             {/* Requirements */}
             <section>
               <h2 className="text-2xl font-bold text-text mb-4">Requirements</h2>
@@ -175,7 +168,6 @@ const CourseDetailPage = () => {
                 ))}
               </ul>
             </section>
-
             {/* Course Content */}
             <section>
               <h2 className="text-2xl font-bold text-text mb-4">Course content</h2>
@@ -204,12 +196,11 @@ const CourseDetailPage = () => {
               </div>
             </section>
           </div>
-
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6">
               {/* Course Image */}
-              <div className="bg-surface border border-default rounded-lg overflow-hidden">
+              <Card className="bg-surface border border-default rounded-lg overflow-hidden">
                 <img
                   src={course.image}
                   alt={course.title}
@@ -221,13 +212,12 @@ const CourseDetailPage = () => {
                     <span>Level: {course.level}</span>
                   </div>
                 </div>
-              </div>
-
+              </Card>
               {/* Instructor Details */}
-              <div className="bg-surface border border-default rounded-lg p-6">
+              <Card className="bg-surface border border-default rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-text mb-4">Instructor</h3>
                 <div className="flex items-center mb-4">
-                  <div className="text-3xl mr-3">{course.instructorAvatar}</div>
+                  <Avatar src={course.instructorAvatar} alt={course.instructor} size={40} className="mr-3" />
                   <div>
                     <p className="font-medium text-text">{course.instructor}</p>
                     <p className="text-sm text-text-muted">Senior React Developer</p>
@@ -236,14 +226,14 @@ const CourseDetailPage = () => {
                 <p className="text-sm text-text-muted mb-4">
                   {course.instructorBio}
                 </p>
-                <button className="btn-outline w-full">
+                <Button variant="outline" className="w-full">
                   View Profile
-                </button>
-              </div>
+                </Button>
+              </Card>
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

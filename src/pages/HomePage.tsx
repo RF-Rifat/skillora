@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
+import { Button, Card, Badge, Container } from '../components';
 
 const HomePage = () => {
   const categories = [
@@ -94,8 +95,8 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-24 lg:py-32">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -110,17 +111,15 @@ const HomePage = () => {
                 online learning platform designed for real-world success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/courses"
-                  className="btn-accent text-lg px-8 py-4 font-semibold"
-                >
-                  Explore Courses
+                <Link to="/courses" className="w-full sm:w-auto">
+                  <Button variant="accent" className="text-lg px-8 py-4 font-semibold w-full">
+                    Explore Courses
+                  </Button>
                 </Link>
-                <Link
-                  to="/auth/register"
-                  className="btn-outline border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 font-semibold"
-                >
-                  Start Learning Free
+                <Link to="/auth/register" className="w-full sm:w-auto">
+                  <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 font-semibold w-full">
+                    Start Learning Free
+                  </Button>
                 </Link>
               </div>
               <div className="mt-8 flex items-center space-x-8 text-sm">
@@ -140,7 +139,7 @@ const HomePage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <Card className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <div className="grid grid-cols-2 gap-4">
                   {[1, 2, 3, 4].map((i) => (
                     <div key={i} className="bg-white/20 rounded-lg p-4 text-center">
@@ -150,10 +149,10 @@ const HomePage = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </Card>
             </motion.div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Course Categories */}
