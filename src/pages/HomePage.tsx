@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { Button, Card, Badge, Container } from '../components';
+import HeroSection from '../components/ui/HeroSection';
 
 const HomePage = () => {
   const categories = [
@@ -93,7 +94,7 @@ const HomePage = () => {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-white overflow-hidden">
+      {/* <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-24 lg:py-32">
@@ -153,7 +154,12 @@ const HomePage = () => {
             </motion.div>
           </div>
         </Container>
-      </section>
+      </section> */}
+
+      {/* Hero Section 2 */}
+      <HeroSection/>
+      {/* Hero Section 2 */}
+      
 
       {/* Course Categories */}
       <section className="py-16 lg:py-24">
