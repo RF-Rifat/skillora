@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { Button, Card, Badge, Container } from '../components';
 import HeroSection from '../components/ui/HeroSection';
+import HeroCourseSection from '../components/ui/HeroCourseSection';
 
 const HomePage = () => {
   const categories = [
@@ -160,6 +161,9 @@ const HomePage = () => {
       <HeroSection/>
       {/* Hero Section 2 */}
       
+      {/* Course Section */}
+      <HeroCourseSection/>
+      {/* Course Section */}
 
       {/* Course Categories */}
       <section className="py-16 lg:py-24">
