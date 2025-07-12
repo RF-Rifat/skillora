@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { Button, Card, Badge, Container } from '../components';
+import { Button, Card, Container } from '../components';
 
 const HomePage = () => {
   const categories = [
