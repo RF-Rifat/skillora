@@ -49,6 +49,20 @@
   /* Easing Functions */
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+  /* our custom colors */
+  /* --primaryBg:#edf6ee;
+  --secondBg:#ffffff;
+  --mainText:#1f2937;
+  --secondText:#4b5563;
+  --btnCol:#10b981;
+  --btnText:#ffffff;
+  --btnHover:#059669;
+  --btnHoverText:#ffffff;
+  --btnOutline:#e5e7eb;
+  --btnOutlineText:#1f2937;
+  --btnOutlineHover:#059669; */
+  /* our custom colors */  
 }
 
 :root {
@@ -207,7 +221,7 @@
   }
 
   h1 {
-    @apply text-4xl font-bold;
+    @apply text-9xl font-bold;
   }
 
   h2 {
